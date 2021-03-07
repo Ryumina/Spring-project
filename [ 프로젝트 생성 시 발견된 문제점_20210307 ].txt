@@ -1,0 +1,25 @@
+[ 프로젝트 생성 시 발견된 문제점_20210307 ]
+
+-> org.hamcrest.Matchers signer information 에러
+    - 에러 내용:
+        java.lang.SecurityException: class "org.hamcrest.Matchers"'s signer information
+        does not match signer information of other classes in the same package...
+
+    - 원인:
+        Spring Boot에서 hamcrest를 이용해서 테스트시 위와 같은 에러가 발생
+        메이븐 라이브러리에도 junit 과 hamcrest가 들어있는데
+        따로 junit 라이브러리를 추가하니 중복으로 기입되면서
+        pom.xml에서 jar 순서가 바뀐 것과 같은 현상이 발생
+
+    - 해결 방법:
+        이클립스 안에 junit 관련 jar가 이미 내장되어 있으니
+        Java Build Path에서 Junit 라이브러리를 제거하는 것이다.
+
+        프로젝트 우클릭 > Properties 클릭 > Java Build Path에서 Libraries 안의
+        Junit 관련 라이브러리 제거
+
+        이후 정상적으로 junit test 수행되었다!
+
+    - 참고 사이트:
+        1. https://net4all.tistory.com/133
+        2. http://wangxiangblog.blogspot.com/2015/10/spring-boot-mockito-spring-rest-junit.html
