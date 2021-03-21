@@ -1,0 +1,42 @@
+[ Spring in Action - 2장 공부중... 리뷰 ]
+
+1. 사용자가 타코를 디자인 할 수 있는 컨트롤러 클래스 생성
+    > DesignTacoController.java
+    > 해당 클래스에서는 모델과 뷰를 바인딩하여 타코를 디자인 할 수 있는 페이지 노출
+    
+2. Thymeleaf를 사용한 타코 디자인 폼 뷰 생성
+    > design.html
+
+3. 디자인한 타코를 주문할 수 있는 컨트롤러 클래스 생성
+    > OrderController.java
+    > 해당 클래스에서는 타코 디자인 페이지에서 사용자가 선택한 디자인 폼을 받아
+      주문을 처리
+
+4. Thymeleaf를 사용한 타코 주문 폼 뷰 생성
+    > orderForm.html
+
+5. 자바 빈 유효성 검사 API 를 이용한 유효성 검사
+    - @NotNull: 속성 값이 null이 아니어야 함
+    - @Size: 입력된 값의 문자 수
+    - @NotBlank: 입력하지 않은 필드 체크
+    - @Pattern: 입력된 값이 지정된 패턴에 적합한 지 체크
+    - @Digits: 입력된 값의 자릿수 체크
+
+6. 유효성이 필요한 메서드에 @Valid 어노테이션 추가 및 Errors로 유효성 error 체크
+
+7. 뷰에 요청을 전달하는 일만 하는 간단한 컨트롤러(=뷰 컨트롤러)를 위한 뷰 컨트롤러 선언
+   > 뷰 컨트롤러 역할을 수행하는 WebConfig 구성 클래스 생성 
+
+[ 메서드에서 사용한 어노테이션 ]
+
+* @Slf4j 어노테이션을 통해 로그로 기록
+* @RequestMapping 어노테이션 적용
+        - 스프링 MVC 요청-대응 어노테이션
+            1. @RequestMapping
+            2. @GetMapping
+            3. @PostMapping
+            4. PutMapping
+            5. DeleteMapping
+            6. PatchMapping
+        - 컨트롤러 메서드에 대한 요청-대응 어노테이션을 사용할 때는
+          가급적 특화된 것을 사용하는 것이 좋고 위와 같은 6가지가 있다.
