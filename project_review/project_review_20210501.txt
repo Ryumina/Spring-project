@@ -1,0 +1,7 @@
+[ Spring in Action - 3장 중간 리뷰 ]
+
+1. 스프링의 JdbcTemplete은 JDBC 작업을 굉장히 쉽게 해준다.
+
+2. 데이터베이스가 생성해 주는 ID의 값을 알아야 할 때는 PreparedStatementCreator와 KeyHolder를 함께 사용할 수 있다.
+
+3. 데이터 추가를 쉽게 실행할 때는 SimpleJdbcInsert를 사용하자

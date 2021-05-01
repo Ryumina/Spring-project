@@ -1,5 +1,9 @@
 package tacos;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -10,6 +14,8 @@ import lombok.Data;
 
 @Data
 public class Order {
+	
+	private Long id;
 	
 	@NotBlank(message="필수 입력값입니다.")
 	private String deliveryName;
@@ -34,4 +40,12 @@ public class Order {
 	
 	@Digits(integer=3, fraction=0, message="CVV 값이 유효하지 않습니다.")
 	private String ccCVV;
+	
+	private Date placedAt;
+	
+	private List<Taco> tacos = new ArrayList<>();
+	
+	public void addDesign(Taco design) {
+		this.tacos.add(design);
+	}
 }
