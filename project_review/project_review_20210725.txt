@@ -1,0 +1,25 @@
+[ Spring in Action - 3장 리뷰 ]
+
+1. 스프링의 JdbcTemplete은 JDBC 작업을 굉장히 쉽게 해준다.
+
+2. 데이터베이스가 생성해 주는 ID의 값을 알아야 할 때는 PreparedStatementCreator와 KeyHolder를 함께 사용할 수 있다.
+
+3. 데이터 추가를 쉽게 실행할 때는 SimpleJdbcInsert를 사용하자
+
+4. 스프링 데이터 JPA는 레퍼지토리 인터페이스를 작성하듯이 JPA 퍼시스턴스를 쉽게 해준다.
+
+[ 스프링 데이터 JPA ]
+- JDBC 버전의 레퍼지토리에서는 레퍼지토리가 제공하는 메서드를 직접 명시적으로 선언했지만
+스프링 데이터는 그 대신 CrudRepository 인터페이스를 extends 하여 정의되어 있는 많은 메서드를 사용할 수 있다.
+
+- CrudRepository는 첫 번째 매개변수로 레퍼지토리에 저장되는 객체 타입이며, 두 번째 매개변수는 객체의 ID 속성의 타입이다.
+(테이블(객체)에서 유일하게 식별하는 속성이라고 보면 된다.)
+
+- CrudRepository에서 제공하는 기본적인 CRUD 연산에 더 추가해서 좀 더 복잡한 쿼리를 결정해야 하는 경우가 있다.
+예를 들어 지정된 일자 범위 내에서 특정 ZIP 코드로 배달된 모든 주문을 쿼리해야 할 때
+readOrdersByDeliveryZipAndPlacedAtBetween(String deliveryZip, Date startDate, Date endDate); 와 같이 나타낼 수 있다.
+
+- 위와 같은 경우는 간단한 쿼리에 속하지만 더 복잡한 쿼리의 경우는 메서드 이름만으로는 감당하기 어렵다.
+따라서 이 때는 어떤 이름이든 원하는 것을 지정한 후 해당 메서드가 호출될 때 수행되는 쿼리에 @Query 어노테이션을 지정하면 된다.
+예를 들어 @Query("order o where o.deliveryCity='Korea'") 이렇게 나타낼 수 있다.
+또한 이름 규칙을 준수하여 쿼리를 수행하는 것이 어렵거나 불가능할 때에도 이 어노테이션을 사용할 수 있다.
